@@ -9,7 +9,7 @@ export default function Menu() {
     qtyItem: 1,
     moneyUser: null,
   });
-
+  
   const handleChange = (event) => {
     const { name, value } = event.target;
     setState((prevState) => ({
@@ -18,17 +18,9 @@ export default function Menu() {
     }));
   };
 
-  const checkOut = () => {
-    if (state.moneyUser && state.moneyUser > totalPrice()) {
-      alert(
-        `Xin cam on quy khach, so tien du cua quy khach la: ${
-          state.moneyUser - totalPrice()
-        }`
-      );
-    } else {
-      alert("Quy khach khong du tien de thuc hien giao dich nay");
-    }
-  };
+  const checkOut = () => state.moneyUser && state.moneyUser > totalPrice() ? 
+  alert("Cam on ban da thanh toan, so tien du cua ban la:" + (state.moneyUser - totalPrice())) :
+  alert("Ban khong du tien de thuc hien thanh toan");
 
   const priceValue = () => {
     const item =
@@ -42,27 +34,29 @@ export default function Menu() {
 
   return (
     <div className="container">
-      <h1>Menu</h1>
-      {items.map((element) => (
-        <Item key={element.name} name={element.name} price={element.price} />
-      ))}
+      <div className="my-3">
+        <h1>Menu</h1>
+        {items.map((element) => (
+          <Item key={element.name} name={element.name} price={element.price} />
+        ))}
+      </div>
 
       <div className="mb-3">
-        <label htmlFor="selectItem" className="form-label">
+        <label htmlFor="selectItem" className="form-label mr-3">
           Thức uống
         </label>
         <select
           id="selectItem"
-          className="form-select form-select-lg"
+          className="form-select form-select-lg rounded-0 p-2 border-0 shadow-sm w-100 h-25 outline-none"
           name="selectedItem"
           onChange={handleChange}
           value={state.selectedItem || ""}
         >
-          <option>
+          <option value="" disabled className="text-muted" >
             Select an item
           </option>
           {items.map((e) => (
-            <option key={e.name} value={e.name}>
+            <option value={e.name} className="text-dark">
               {e.name}
             </option>
           ))}
@@ -71,7 +65,7 @@ export default function Menu() {
 
       <div className="mb-3">
         <label htmlFor="inputPrice" className="form-label">
-          Price
+          Giá
         </label>
         <input
           type="number"
@@ -90,7 +84,7 @@ export default function Menu() {
 
       <div className="mb-3">
         <label htmlFor="inputNumber" className="form-label">
-          Quantity
+          Số lượng
         </label>
         <input
           type="number"
@@ -101,6 +95,7 @@ export default function Menu() {
           placeholder=""
           min={1}
           onChange={handleChange}
+          value={state.qtyItem}
         />
         <small id="helpId" className="form-text text-muted">
           Help text
@@ -109,7 +104,7 @@ export default function Menu() {
 
       <div className="mb-3">
         <label htmlFor="inputNumber" className="form-label">
-          Total Price
+          Tổng tiền
         </label>
         <input
           type="number"
@@ -128,7 +123,7 @@ export default function Menu() {
 
       <div className="mb-3">
         <label htmlFor="inputNumber" className="form-label">
-          Input your money here:
+          Nhập số tiền của quý khách
         </label>
         <input
           type="number"
@@ -145,7 +140,7 @@ export default function Menu() {
       </div>
 
       <button className="btn btn-primary" onClick={checkOut}>
-        OK
+        Thanh Toán
       </button>
     </div>
   );

@@ -1,20 +1,24 @@
 export function Data() {
   return [
     {
-      name: "cf sua",
+      name: "Cà phê sữa",
       price: 12000
     },
     {
-      name: "cf den",
+      name: "Cà phê đen",
       price: 10000
     },
     {
-      name: "sting dau",
+      name: "Sting dâu",
       price: 8000
     },
     {
-      name: "tra da",
+      name: "Trà đá",
       price: 2000
+    },
+    {
+      name: "Trà tắc khổng lồ",
+      price: 15000
     },
   ];
 }
