@@ -10,6 +10,7 @@ export default function ShowUser(props) {
             <ul>
               <li>{user.name}</li>
               <li>{user.email}</li>
+              <li><img src={user.avatar} alt=""/></li>
             </ul>
           </React.Fragment>
         )
